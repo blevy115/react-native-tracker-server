@@ -3,13 +3,14 @@ const express = require('express');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const variables = require('../variables')
 
 const app = express();
 
 app.use(bodyParser.json()); // must be parsed before request handler
 app.use(authRoutes);
 
-const mongoUri = 'mongodb+srv://blevy:Linklink115@cluster0-aotky.mongodb.net/test?retryWrites=true&w=majority'
+const mongoUri = `mongodb+srv://${variables.mongoUser}:${variables.mongoPassword}@cluster0-aotky.mongodb.net/test?retryWrites=true&w=majority`
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useCreateIndex: true,
